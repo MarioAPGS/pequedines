@@ -1,0 +1,62 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" >Filtrar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" (click)="mostrarTodosLosTrabajos()" style="cursor: pointer;">Ver todos</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Usuarios
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" *ngFor="let item of servicio.listaUsuarios; "
+                        (click)="filtrarTrabajosPorUsuario(item.uid)">{{item.displayName}}</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Tareas
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                    <a class="dropdown-item" *ngFor="let item of servicio.listaTareas;"
+                        (click)="filtrarTrabajosPorTarea(item.id)">{{item.titulo}}</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<td style="width: 70%;">
+    <div style=" overflow-y: scroll; overflow-x: hidden; height: 100%;">
+        <div class="col mb-4" *ngFor="let item of listaTrabajosFiltrada">
+
+            <div class="courses-container">
+                <div class="course">
+                    <div class="course-preview">
+                        <h6>{{item.fecha_subida}}</h6>
+                        <h2></h2>
+                        <a href="#">View all chapters <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="course-info">
+                        <div class="progress-container">
+
+                        </div>
+                        <h6>{{servicio.buscarUsuarioPorUID(item.uid_creador).displayName}}</h6>
+                        <h2>{{item.titulo}}</h2>
+                        <h6>{{item.comentarios}}</h6>
+                        <a class="btn" style="float: right;" href="{{item.url}}">Ver</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</td>
